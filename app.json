@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "init-project-celtiberian",
+    "slug": "init-project-celtiberian",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "init-project-celtiberian"
+}
