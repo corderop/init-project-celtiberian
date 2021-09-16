@@ -27,8 +27,12 @@ export default function reducer(state, action) {
             }
 
         case DELETE_BOOK:
-            delete state.books[action.payload.id];
-            return state;
+            var cloneBooks = Object.assign({}, state.books);
+            delete cloneBooks[action.payload.id];
+            return {
+                ...state,
+                books: cloneBooks
+            };
 
         default:
             return state;
