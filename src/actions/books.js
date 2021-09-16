@@ -5,15 +5,16 @@ import {
     NEW_BOOKS,
     DELETE_ALL_BOOKS
 } from "./types";
+import BooksService from '../services/books';
 
-export const getBooks = () => (dispatch) => {
+export const getBooks = () => async (dispatch) => {
 
-    // Here would come the HTTP call and their error catching
-
+    const bs = await BooksService.getAllBooks(); 
+    
     dispatch({
         type: NEW_BOOKS,
         payload: {
-            // books: {}
+            books: bs
         }
     })
 

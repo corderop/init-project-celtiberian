@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, View, Pressable } from 'react-native';
 import { connect } from 'react-redux';
 import {

@@ -1,12 +1,18 @@
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
+import { connect } from 'react-redux';
 import styles from './style';
+import {
+	getBooks
+} from '../../actions/books';
 
-export default function Navbar() {
+const Navbar = (props) => {
+
+	const { getBooks } = props;
 
 	const pages = [
-		{ key: 0, text: 'Tutorials', action: () => console.log('Tutorials') },
-		{ key: 1, text: 'Add', action: () => console.log('Add') }
+		{ key: 0, text: 'Tutorials', action: () => getBooks() },
+		{ key: 1, text: 'Add', action: () => console.log("Add") }
 	]
 
 	return (
@@ -25,3 +31,6 @@ export default function Navbar() {
 		</View>
 	);
 }
+
+// export default Navbar;
+export default connect( null, { getBooks })(Navbar);
