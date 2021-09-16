@@ -1,3 +1,5 @@
 export const CREATE_BOOK = "CREATE_BOOK";
 export const UPDATE_BOOK = "UPDATE_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK"; 
+export const NEW_BOOKS = "NEW_BOOKS"; 
+export const DELETE_ALL_BOOKS = "DELETE_ALL_BOOKS";
