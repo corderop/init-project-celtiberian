@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Text, View, Pressable } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import {
+	getBooks,
 	deleteAllBooks
 } from '../../actions/books';
 import styles from './style';
@@ -11,7 +12,10 @@ import { Actions } from 'react-native-router-flux';
 
 const BooksScreen = (props) => {
 
-	const { books, deleteAllBooks } = props;
+	const { books, getBooks, deleteAllBooks } = props;
+	useEffect( () => {
+		getBooks()
+	});
 
 	return (
 		<View style={styles.container}>
@@ -32,5 +36,5 @@ const mapStateToProps = state => ({
 	books: state.books
 });
 
-export default connect(mapStateToProps, { deleteAllBooks })(BooksScreen);
+export default connect(mapStateToProps, { deleteAllBooks, getBooks })(BooksScreen);
 

@@ -5,13 +5,11 @@ import styles from './style';
 import {
 	getBooks
 } from '../../actions/books';
+import { Actions } from 'react-native-router-flux';
 
-const Navbar = (props) => {
-
-	const { getBooks } = props;
-
+const Navbar = () => {
 	const pages = [
-		{ key: 0, text: 'Tutorials', action: () => getBooks() },
+		{ key: 0, text: 'Tutorials', action: () => Actions.jump("main") },
 		{ key: 1, text: 'Add', action: () => console.log("Add") }
 	]
 
@@ -32,5 +30,4 @@ const Navbar = (props) => {
 	);
 }
 
-// export default Navbar;
-export default connect( null, { getBooks })(Navbar);
+export default Navbar;

@@ -24,39 +24,13 @@ class BooksService {
 
                 books[b['DOI']] = {
                     id: b["DOI"],
-                    title: b["container-title"].length ? b["container-title"][0] : ""
+                    title: b["container-title"].length ? b["container-title"][0] : "",
+                    description: b["type"],
+                    author: b["publisher"]
                 }
             });
 
             return books;
-
-        }
-        catch (err) {
-
-            console.log(err);
-            return {};
-
-        }
-
-    }
-
-    async getBook(id) {
-
-        try{
-
-            const res = await axios({
-                method: "get",
-                url: this.PATH + `works/${id}`
-            });
-
-            const data = res.data.message;
-
-            return {
-                id: data["DOI"],
-                title: data["container-title"].length ? data["container-title"][0] : "",
-                description: data["type"],
-                author: data["publisher"]
-            };
 
         }
         catch (err) {

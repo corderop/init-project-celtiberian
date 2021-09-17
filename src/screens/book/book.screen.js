@@ -4,34 +4,23 @@ import { connect } from 'react-redux';
 import {
     deleteBook
 } from '../../actions/books';
-import BooksService from '../../services/books.service';
 import styles from './style';
 import Navbar from '../../components/navbar/navbar.component';
+import { Actions } from 'react-native-router-flux';
 
 const BookScreen = (props) => {
 
-	const { id, title, deleteBook } = props;
-    const [book, setBook] = useState({
-        id: id,
-        title: title
-    })
-
-    useEffect(() => {
-        
-        BooksService.getBook(id)
-        .then( setBook )
-
-    }, [id])
+	const { id, books, deleteBook } = props;
 
 	return (
 		<View style={styles.container}>
             <Navbar />
 			<View style={styles.content}>
                 <View style={styles.titleWrap}>
-                    <Text style={styles.title}> {book.title || ""} </Text>
-                    <Text style={styles.author}> {book.author || ""} </Text>
+                    <Text style={styles.title}> {books[id] ? books[id].title : ""} </Text>
+                    <Text style={styles.author}> {books[id] ? books[id].author : ""} </Text>
                 </View>
-                <Text style={styles.description}> {book.description || ""} </Text>
+                <Text style={styles.description}> {books[id] ? books[id].description : ""} </Text>
                 <View style={styles.buttonWrap}>
                     <Pressable style={[styles.button, styles.editButton]}
                         onPressOut={() => console.log("Mover hacia editar")}
@@ -39,7 +28,10 @@ const BookScreen = (props) => {
                         <Text>Edit</Text>
                     </Pressable>
                     <Pressable style={[styles.button, styles.deleteButton]}
-                        onPressOut={() => deleteBook(id)}
+                        onPressOut={() => {
+                            deleteBook(id);
+                            Actions.pop();
+                        }}
                     >
                         <Text>Delete</Text>
                     </Pressable>
@@ -49,5 +41,9 @@ const BookScreen = (props) => {
 	);
 }
 
-export default connect(null, { deleteBook })(BookScreen);
+const mapStateToProps = state => ({
+	books: state.books
+});
+
+export default connect(mapStateToProps, { deleteBook })(BookScreen);
 
