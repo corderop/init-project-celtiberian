@@ -10,7 +10,7 @@ import { Actions } from 'react-native-router-flux';
 const Navbar = () => {
 	const pages = [
 		{ key: 0, text: 'Tutorials', action: () => Actions.jump("main") },
-		{ key: 1, text: 'Add', action: () => console.log("Add") }
+		{ key: 1, text: 'Add', action: () => Actions.jump('addBook') }
 	]
 
 	return (

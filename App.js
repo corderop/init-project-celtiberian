@@ -4,6 +4,7 @@ import { Router, Scene, Stack } from 'react-native-router-flux';
 import store from './src/store';
 import BooksScreen from './src/screens/books/books.screen';
 import BookScreen from './src/screens/book/book.screen';
+import AddBookScreen from './src/screens/addBook/addBook.screen';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Stack key="root">
           <Scene key="main" component={BooksScreen} hideNavBar />
           <Scene key="book" component={BookScreen} hideNavBar />
+          <Scene key="addBook" component={AddBookScreen} hideNavBar />
         </Stack>
       </Router>
     </Provider>
