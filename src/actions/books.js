@@ -20,13 +20,14 @@ export const getBooks = () => async (dispatch) => {
 
 }
 
-export const createBook = (title, description, author) => (dispatch) => {
+export const createBook = (id, title, description, author) => (dispatch) => {
 
     // Here would come the HTTP call and their error catching
 
     dispatch({
         type: CREATE_BOOK,
         payload: {
+            id: id,
             title: title,
             description: description,
             author: author
