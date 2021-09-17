@@ -1,24 +1,28 @@
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import {
-	deleteBook
+	deleteAllBooks
 } from '../../actions/books';
 import styles from './style';
 import Navbar from '../../components/navbar/navbar.component';
 
 const BooksScreen = (props) => {
 
-	const { books, deleteBook } = props;
+	const { books, deleteAllBooks } = props;
 
 	return (
 		<View style={styles.container}>
             <Navbar />
+			<ScrollView>
 			{ books && Object.keys(books).map( key => (
-				<Pressable key={key} style={styles.book} onPressOut={() => deleteBook(key)}>
-					<Text>{books[key].title}</Text>
+				<Pressable key={key} style={styles.book} onPress={() => console.log('Presionado')}>
+					<Text style={styles.title}>{books[key].title}</Text>
+					<Text style={styles.id}>{books[key].id}</Text>
 				</Pressable>
 			))}
+			</ScrollView>
 		</View>
 	);
 }
@@ -27,5 +31,5 @@ const mapStateToProps = state => ({
 	books: state.books
 });
 
-export default connect(mapStateToProps, { deleteBook })(BooksScreen);
+export default connect(mapStateToProps, { deleteAllBooks })(BooksScreen);
 
