@@ -7,6 +7,7 @@ import {
 } from '../../actions/books';
 import styles from './style';
 import Navbar from '../../components/navbar/navbar.component';
+import { Actions } from 'react-native-router-flux';
 
 const BooksScreen = (props) => {
 
@@ -17,7 +18,7 @@ const BooksScreen = (props) => {
             <Navbar />
 			<ScrollView>
 			{ books && Object.keys(books).map( key => (
-				<Pressable key={key} style={styles.book} onPress={() => console.log('Presionado')}>
+				<Pressable key={key} style={styles.book} onPress={() => Actions.push("book", {id: books[key].id})}>
 					<Text style={styles.title}>{books[key].title}</Text>
 					<Text style={styles.id}>{books[key].id}</Text>
 				</Pressable>
