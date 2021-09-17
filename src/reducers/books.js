@@ -35,7 +35,6 @@ export default function reducer(state, action) {
             }
 
         case UPDATE_BOOK: 
-            console.log(payload)
             return {
                 ...state,
                 books: {
