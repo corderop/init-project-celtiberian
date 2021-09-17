@@ -27,7 +27,7 @@ const BookScreen = (props) => {
 
                 <View style={buttonsStyles.buttonWrap}>
                     <Pressable style={[buttonsStyles.button, styles.editButton]}
-                        onPressOut={() => console.log("Mover hacia editar")}
+                        onPressOut={() => Actions.push('editBook', { id: id })}
                     >
                         <Text>Edit</Text>
                     </Pressable>
