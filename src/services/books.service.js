@@ -17,16 +17,14 @@ class BooksService {
 
             const data = res.data.message.items;
 
-            // Conver data into an associative array with proper format
+            // Convert data into an associative array with proper format
             let books = {};
 
             data.forEach( b => {
 
                 books[b['DOI']] = {
                     id: b["DOI"],
-                    description: b["type"],
-                    title: b["container-title"].length ? b["container-title"][0] : undefined,
-                    author: b["publisher"]
+                    title: b["container-title"].length ? b["container-title"][0] : ""
                 }
             });
 
@@ -55,8 +53,8 @@ class BooksService {
 
             return {
                 id: data["DOI"],
+                title: data["container-title"].length ? data["container-title"][0] : "",
                 description: data["type"],
-                title: data["container-title"].length ? data["container-title"][0] : undefined,
                 author: data["publisher"]
             };
 

@@ -5,7 +5,7 @@ import {
     NEW_BOOKS,
     DELETE_ALL_BOOKS
 } from "./types";
-import BooksService from '../services/books';
+import BooksService from '../services/books.service';
 
 export const getBooks = () => async (dispatch) => {
 
