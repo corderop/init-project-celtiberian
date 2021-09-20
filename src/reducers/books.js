@@ -13,16 +13,12 @@ export default function reducer(state, action) {
     switch (type) {
 
         case NEW_BOOKS:
-            if(!state.books)
-                return {
-                    ...state,
-                    books: {
-                        ...state.books,
-                        ...payload.books
-                    }
+            return {
+                ...state,
+                books: {
+                    ...payload.books
                 }
-            
-            return state;
+            }
             
 
         case CREATE_BOOK:

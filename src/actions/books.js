@@ -20,48 +20,54 @@ export const getBooks = () => async (dispatch) => {
 
 }
 
-export const createBook = (id, title, description, author) => (dispatch) => {
+export const createBook = (title, author, description) => async (dispatch) => {
 
-    // Here would come the HTTP call and their error catching
+    const id = await BooksService.addBook(title, author, description);
 
-    dispatch({
-        type: CREATE_BOOK,
-        payload: {
-            id: id,
-            title: title,
-            description: description,
-            author: author
-        }
-    })
+    if(id != -1){
+        dispatch({
+            type: CREATE_BOOK,
+            payload: {
+                id: id,
+                title: title,
+                description: description,
+                author: author
+            }
+        })
+    }
     
 }
 
-export const updateBook = (id, title, description, author) => (dispatch) => {
+export const updateBook = (id, title, description, author) => async (dispatch) => {
 
-    // Here would come the HTTP call and their error catching
+    const res = await BooksService.updateBook(id, title, author, description);
 
-    dispatch({
-        type: UPDATE_BOOK,
-        payload: {
-            id: id,
-            title: title,
-            description: description,
-            author: author
-        }
-    })
+    if(res){
+        dispatch({
+            type: UPDATE_BOOK,
+            payload: {
+                id: id,
+                title: title,
+                description: description,
+                author: author
+            }
+        })
+    }
     
 }
 
-export const deleteBook = (id) => (dispatch) => {
+export const deleteBook = (id) => async (dispatch) => {
 
-    // Here would come the HTTP call and their error catching
+    const res = await BooksService.deleteBook(id);
 
-    dispatch({
-        type: DELETE_BOOK,
-        payload: {
-            id: id
-        }
-    })
+    if(res){
+        dispatch({
+            type: DELETE_BOOK,
+            payload: {
+                id: id
+            }
+        })
+    }
     
 }
 

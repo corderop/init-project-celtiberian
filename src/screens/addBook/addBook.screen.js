@@ -33,7 +33,7 @@ const AddBookScreen = (props) => {
            inputs.author || inputs.author != "" && 
            inputs.description || inputs.description != "" 
         ){
-            createBook( Math.floor(Math.random() * 3000), inputs.title, inputs.description, inputs.author );
+            createBook( inputs.title, inputs.author, inputs.description );
             Actions.jump("main");
         }
 

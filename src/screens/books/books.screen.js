@@ -15,7 +15,7 @@ const BooksScreen = (props) => {
 	const { books, getBooks, deleteAllBooks } = props;
 	useEffect( () => {
 		getBooks()
-	});
+	}, []);
 
 	return (
 		<View style={styles.container}>
