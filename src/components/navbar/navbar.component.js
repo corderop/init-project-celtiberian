@@ -1,17 +1,11 @@
 import React from 'react';
 import { Text, View, Pressable } from 'react-native';
-import { connect } from 'react-redux';
 import styles from './style';
-import {
-	getBooks
-} from '../../actions/books';
 import { Actions } from 'react-native-router-flux';
 
-const Navbar = () => {
-	const pages = [
-		{ key: 0, text: 'Tutorials', action: () => Actions.jump("main") },
-		{ key: 1, text: 'Add', action: () => Actions.jump('addBook') }
-	]
+const Navbar = (props) => {
+
+	const { pages } = props;
 
 	return (
 		<View style={styles.container}>

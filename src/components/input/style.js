@@ -1,14 +1,6 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-	
-    content: {
-        padding: 20
-    },
-
-    inputWrap: {
-        marginVertical: 10
-    },
 
     label: {
         marginBottom: 10,
@@ -21,15 +13,6 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 10
     },  
-
-    // Buttons styles
-    submitButton: {
-        backgroundColor: "#93CAED"
-    },
-
-    cancelButton: {
-        backgroundColor: "#F47174"
-    }
 
 });
 

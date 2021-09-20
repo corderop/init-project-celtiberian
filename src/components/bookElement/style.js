@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-	
+
     book: {
-        margin: 10,
         padding: 10,
         borderWidth: 1,
         borderRadius: 10,
@@ -16,7 +15,6 @@ const styles = StyleSheet.create({
     id: {
         fontSize: 12
     } 
-    
 
 });
 

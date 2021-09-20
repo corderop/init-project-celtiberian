@@ -2,10 +2,6 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
 	
-    content: {
-        padding: 20
-    },
-
     // Title and description styles
     titleWrap: {
         marginBottom: 30
@@ -27,25 +23,9 @@ const styles = StyleSheet.create({
     },
 
     // Buttons styles
-    buttonWrap: {
-        flexDirection: "row",
-        justifyContent: "space-evenly"
+    buttons: {
+        marginTop: 30
     },
-
-    button: {
-        flexGrow: 0,
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        borderRadius: 5
-    },
-
-    editButton: {
-        backgroundColor: "#93CAED"
-    },
-
-    deleteButton: {
-        backgroundColor: "#F47174"
-    }
 
 });
 
