@@ -2,6 +2,7 @@ import React from 'react'
 import { View } from 'react-native'
 import Button from '../button/button.component'
 import styles from './style'
+import PropTypes from 'prop-types'
 
 const ButtonWrap = (props) => {
   const { buttons, style } = props
@@ -19,6 +20,11 @@ const ButtonWrap = (props) => {
       ))}
     </View>
   )
+}
+
+ButtonWrap.propTypes = {
+  buttons: PropTypes.array,
+  style: PropTypes.object
 }
 
 export default ButtonWrap

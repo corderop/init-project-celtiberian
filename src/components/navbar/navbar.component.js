@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
 import styles from './style'
+import PropTypes from 'prop-types'
 
 const Navbar = (props) => {
   const { pages } = props
@@ -13,6 +14,16 @@ const Navbar = (props) => {
         </Pressable>
       ))}
     </View>
+  )
+}
+
+Navbar.propTypes = {
+  pages: PropTypes.arrayOf(
+    PropTypes.exact({
+      key: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      action: PropTypes.func.isRequired
+    })
   )
 }
 

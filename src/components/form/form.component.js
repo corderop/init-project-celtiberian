@@ -3,6 +3,7 @@ import { View } from 'react-native'
 import styles from './style'
 import Input from '../input/input.component'
 import ButtonWrap from '../buttonWrap/buttonWrap.component'
+import PropTypes from 'prop-types'
 
 const Form = (props) => {
   const { fields, cancelTitle, submitTitle, onCancel, onSubmit, style } = props
@@ -24,7 +25,7 @@ const Form = (props) => {
   }
 
   const submitForm = () => {
-    for (const [key, val] of Object.entries(values)) {
+    for (const val of Object.values(values)) {
       if (val && val.trim() === '') {
         return false
       }
@@ -53,6 +54,21 @@ const Form = (props) => {
       />
     </View>
   )
+}
+
+Form.propTypes = {
+  fields: PropTypes.arrayOf(
+    PropTypes.exact({
+      key: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      defaultValue: PropTypes.string
+    })
+  ),
+  cancelTitle: PropTypes.string.isRequired,
+  submitTitle: PropTypes.string.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  style: PropTypes.object
 }
 
 export default Form

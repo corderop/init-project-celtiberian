@@ -2,6 +2,7 @@ import React from 'react'
 import { Text, View } from 'react-native'
 import styles from './style'
 import ButtonWrap from '../buttonWrap/buttonWrap.component'
+import PropTypes from 'prop-types'
 
 const BookInfo = (props) => {
   const { title, author, description, deleteBook, editBook, style } = props
@@ -23,6 +24,15 @@ const BookInfo = (props) => {
       />
     </View>
   )
+}
+
+BookInfo.propTypes = {
+  title: PropTypes.string,
+  author: PropTypes.string,
+  description: PropTypes.string,
+  deleteBook: PropTypes.func.isRequired,
+  editBook: PropTypes.func.isRequired,
+  style: PropTypes.object
 }
 
 export default BookInfo

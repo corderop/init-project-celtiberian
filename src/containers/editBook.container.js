@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { updateBook } from '../actions/books'
 import { Actions } from 'react-native-router-flux'
 import EditBook from '../components/editBook/editBook.component'
+import PropTypes from 'prop-types'
 
 const EditBookContainer = (props) => {
   const { id, books, updateBook } = props
@@ -23,6 +24,12 @@ const EditBookContainer = (props) => {
       editBook={submitEdit}
     />
   )
+}
+
+EditBookContainer.propTypes = {
+  id: PropTypes.string.isRequired,
+  books: PropTypes.object.isRequired,
+  updateBook: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({

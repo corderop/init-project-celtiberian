@@ -4,6 +4,7 @@ import styles from './style'
 import Navbar from '../navbar/navbar.component'
 import Form from '../form/form.component'
 import { Actions } from 'react-native-router-flux'
+import PropTypes from 'prop-types'
 
 const AddBook = (props) => {
   const { createBook, cancelBookCreation } = props
@@ -30,6 +31,11 @@ const AddBook = (props) => {
       />
     </View>
   )
+}
+
+AddBook.propTypes = {
+  createBook: PropTypes.func.isRequired,
+  cancelBookCreation: PropTypes.func.isRequired
 }
 
 export default AddBook

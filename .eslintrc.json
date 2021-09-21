@@ -5,6 +5,7 @@
         "node": true,
         "jest": true
     },
+    "ignorePatterns": "*.json",
     "extends": [
         "eslint:recommended",
         "prettier",

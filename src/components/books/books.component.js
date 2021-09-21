@@ -4,6 +4,7 @@ import styles from './style'
 import Navbar from '../navbar/navbar.component'
 import BooksList from '../booksList/booksList.component'
 import { Actions } from 'react-native-router-flux'
+import PropsTypes from 'prop-types'
 
 const Books = (props) => {
   const { books } = props
@@ -19,6 +20,10 @@ const Books = (props) => {
       <BooksList style={styles.bookList} books={books} />
     </View>
   )
+}
+
+Books.propTypes = {
+  books: PropsTypes.object
 }
 
 export default Books

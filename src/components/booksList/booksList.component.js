@@ -2,6 +2,7 @@ import React from 'react'
 import { ScrollView } from 'react-native'
 import BookElement from '../bookElement/bookElement.component'
 import styles from './style'
+import PropTypes from 'prop-types'
 
 const BooksList = (props) => {
   const { books, style } = props
@@ -20,6 +21,11 @@ const BooksList = (props) => {
         ))}
     </ScrollView>
   )
+}
+
+BooksList.propTypes = {
+  books: PropTypes.object,
+  style: PropTypes.object
 }
 
 export default BooksList

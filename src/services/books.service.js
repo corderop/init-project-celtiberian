@@ -45,7 +45,7 @@ class BooksService {
 
   async updateBook(id, title, author, description) {
     try {
-      const res = await axios({
+      await axios({
         method: 'put',
         url: this.PATH + `book/${id}`,
         headers: {
@@ -67,7 +67,7 @@ class BooksService {
 
   async deleteBook(id) {
     try {
-      const res = await axios({
+      await axios({
         method: 'delete',
         url: this.PATH + `book/${id}`
       })

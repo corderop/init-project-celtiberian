@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux'
 import { connect } from 'react-redux'
 import { createBook } from '../actions/books'
 import AddBook from '../components/addBook/addBook.component'
+import PropTypes from 'prop-types'
 
 const AddBookContainer = (props) => {
   const { createBook } = props
@@ -22,6 +23,10 @@ const AddBookContainer = (props) => {
       cancelBookCreation={cancelBookCreation}
     />
   )
+}
+
+AddBookContainer.propTypes = {
+  createBook: PropTypes.func
 }
 
 export default connect(null, { createBook })(AddBookContainer)
