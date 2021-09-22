@@ -5,33 +5,51 @@ import Navbar from '../navbar/navbar.component'
 import Form from '../form/form.component'
 import { Actions } from 'react-native-router-flux'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 const EditBook = (props) => {
   const { book, cancelAction, editBook } = props
+  const { t } = useTranslation('common')
 
   return (
     <View style={styles.container}>
       <Navbar
         pages={[
-          { key: 0, text: 'Tutorials', action: () => Actions.jump('main') },
-          { key: 1, text: 'Add', action: () => Actions.jump('addBook') }
+          {
+            key: 0,
+            text: t('mainPage.tutorials'),
+            action: () => Actions.jump('main')
+          },
+          {
+            key: 1,
+            text: t('mainPage.add'),
+            action: () => Actions.jump('addBook')
+          }
         ]}
       />
       {book && (
         <Form
           style={styles.form}
           fields={[
-            { key: 'title', title: 'Title', defaultValue: book.title },
-            { key: 'author', title: 'Author', defaultValue: book.author },
+            {
+              key: 'title',
+              title: t('bookAttributes.title'),
+              defaultValue: book.title
+            },
+            {
+              key: 'author',
+              title: t('bookAttributes.author'),
+              defaultValue: book.author
+            },
             {
               key: 'description',
-              title: 'Description',
+              title: t('bookAttributes.description'),
               defaultValue: book.description
             }
           ]}
-          submitTitle={'Submit'}
+          submitTitle={t('buttonsText.submit')}
           onSubmit={editBook}
-          cancelTitle={'Cancel'}
+          cancelTitle={t('buttonsText.cancel')}
           onCancel={cancelAction}
         />
       )}

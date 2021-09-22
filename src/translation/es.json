@@ -1,0 +1,18 @@
+{
+  "mainPage": {
+    "tutorials": "Tutoriales",
+    "add": "Añadir",
+    "changeLanguage": "Cambiar idioma"
+  },
+  "bookAttributes": {
+    "title": "Título",
+    "author": "Autor",
+    "description": "Descripción"
+  },
+  "buttonsText": {
+    "submit": "Enviar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  }
+}

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 class BooksService {
   constructor() {
-    this.PATH = 'http://192.168.1.167:3000/'
+    this.PATH = 'http://192.168.0.102:3000/'
   }
 
   async getAllBooks() {

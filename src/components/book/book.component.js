@@ -5,16 +5,26 @@ import Navbar from '../navbar/navbar.component'
 import BookInfo from '../bookInfo/bookInfo.component'
 import { Actions } from 'react-native-router-flux'
 import PropTypes from 'prop-types'
+import { useTranslation } from 'react-i18next'
 
 const Book = (props) => {
   const { book, deleteBook, editBook } = props
+  const { t } = useTranslation('common')
 
   return (
     <View style={styles.container}>
       <Navbar
         pages={[
-          { key: 0, text: 'Tutorials', action: () => Actions.jump('main') },
-          { key: 1, text: 'Add', action: () => Actions.jump('addBook') }
+          {
+            key: 0,
+            text: t('mainPage.tutorials'),
+            action: () => Actions.jump('main')
+          },
+          {
+            key: 1,
+            text: t('mainPage.add'),
+            action: () => Actions.jump('addBook')
+          }
         ]}
       />
       {book && (

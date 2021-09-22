@@ -19,7 +19,7 @@ const mapStateToProps = (state) => ({
 })
 
 BooksContainer.propTypes = {
-  books: PropTypes.object.isRequired,
+  books: PropTypes.object,
   getBooks: PropTypes.func.isRequired
 }
 
