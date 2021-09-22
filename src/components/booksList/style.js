@@ -1,11 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
+  book: {
+    marginTop: 10
+  }
+})
 
-    book: {
-        marginTop: 10
-    }
-
-});
-
-export default styles;
+export default styles

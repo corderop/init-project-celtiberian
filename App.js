@@ -1,11 +1,11 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { Router, Scene, Stack } from 'react-native-router-flux';
-import store from './src/store';
-import BooksContainer from './src/containers/books.container';
-import BookContainer from './src/containers/book.container';
-import EditBookContainer from './src/containers/editBook.container';
-import addBookContainer from './src/containers/addBook.container';
+import React from 'react'
+import { Provider } from 'react-redux'
+import { Router, Scene, Stack } from 'react-native-router-flux'
+import store from './src/store'
+import BooksContainer from './src/containers/books.container'
+import BookContainer from './src/containers/book.container'
+import EditBookContainer from './src/containers/editBook.container'
+import addBookContainer from './src/containers/addBook.container'
 
 export default function App() {
   return (
@@ -19,5 +19,5 @@ export default function App() {
         </Stack>
       </Router>
     </Provider>
-  );
+  )
 }

@@ -1,23 +1,22 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-	
-	container: {
-		backgroundColor: '#000',
-		borderWidth: 1,
-		flexDirection: 'row'
-	},
+  container: {
+    backgroundColor: '#000',
+    borderWidth: 1,
+    flexDirection: 'row'
+  },
 
-	element: {
-		paddingVertical: 10,
-		paddingHorizontal: 20,
-		alignItems: 'center'
-	},
+  element: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    alignItems: 'center'
+  },
 
-	text: {
-		color: '#FFF', 
-		fontSize: 16,
-	}
-});
+  text: {
+    color: '#FFF',
+    fontSize: 16
+  }
+})
 
-export default styles;
+export default styles

@@ -1,27 +1,19 @@
-import React from 'react';
-import { Text, View, Pressable } from 'react-native';
-import styles from './style';
-import { Actions } from 'react-native-router-flux';
+import React from 'react'
+import { Text, View, Pressable } from 'react-native'
+import styles from './style'
 
 const Navbar = (props) => {
+  const { pages } = props
 
-	const { pages } = props;
-
-	return (
-		<View style={styles.container}>
-			
-			{ pages.map( p => 
-				<Pressable 
-					key={p.key}
-					style={styles.element}
-					onPressOut={p.action}
-				>
-					<Text style={styles.text}>{p.text}</Text>
-				</Pressable>
-			)}
-
-		</View>
-	);
+  return (
+    <View style={styles.container}>
+      {pages.map((p) => (
+        <Pressable key={p.key} style={styles.element} onPressOut={p.action}>
+          <Text style={styles.text}>{p.text}</Text>
+        </Pressable>
+      ))}
+    </View>
+  )
 }
 
-export default Navbar;
+export default Navbar

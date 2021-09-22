@@ -1,11 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-	
-    bookList: {
-        paddingHorizontal: 20
-    }
+  bookList: {
+    paddingHorizontal: 20
+  }
+})
 
-});
-
-export default styles;
+export default styles
