@@ -1,11 +1,17 @@
 import React from 'react'
 import { Actions } from 'react-native-router-flux'
-import { connect } from 'react-redux'
-import { deleteBook } from '../actions/books'
+import { connect, ConnectedProps } from 'react-redux'
+import { deleteBook } from '../redux/actions/books'
 import Book from '../components/book/book.component'
-import PropTypes from 'prop-types'
+import { Books } from '../redux/types'
 
-const BookContainer = (props) => {
+interface Props extends PropsFromRedux {
+  id: number
+  books: Books
+  deleteBook: (id: number) => void
+}
+
+const BookContainer: React.FC<Props> = (props) => {
   const { id, books, deleteBook } = props
 
   const removeBook = () => {
@@ -20,14 +26,11 @@ const BookContainer = (props) => {
   return <Book book={books[id]} deleteBook={removeBook} editBook={editBook} />
 }
 
-BookContainer.propTypes = {
-  id: PropTypes.string,
-  books: PropTypes.object,
-  deleteBook: PropTypes.func
-}
-
 const mapStateToProps = (state) => ({
   books: state.books
 })
 
-export default connect(mapStateToProps, { deleteBook })(BookContainer)
+const connector = connect(mapStateToProps, { deleteBook })
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export default connector(BookContainer)

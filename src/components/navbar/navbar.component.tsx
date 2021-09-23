@@ -1,9 +1,13 @@
 import React from 'react'
 import { Text, View, Pressable } from 'react-native'
 import styles from './style'
-import PropTypes from 'prop-types'
+import { PageType } from './navbar.types'
 
-const Navbar = (props) => {
+interface Props {
+  pages: Array<PageType>
+}
+
+const Navbar: React.FC<Props> = (props) => {
   const { pages } = props
 
   return (
@@ -14,16 +18,6 @@ const Navbar = (props) => {
         </Pressable>
       ))}
     </View>
-  )
-}
-
-Navbar.propTypes = {
-  pages: PropTypes.arrayOf(
-    PropTypes.exact({
-      key: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      action: PropTypes.func.isRequired
-    })
   )
 }
 

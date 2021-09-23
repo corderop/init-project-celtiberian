@@ -4,15 +4,19 @@ import styles from './style'
 import Navbar from '../navbar/navbar.component'
 import BooksList from '../booksList/booksList.component'
 import { Actions } from 'react-native-router-flux'
-import PropsTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { Books } from '../../redux/types'
 
-const Books = (props) => {
+interface Props {
+  books: Books
+}
+
+const BooksComponent: React.FC<Props> = (props) => {
   const { books } = props
   const { t } = useTranslation('common')
 
   return (
-    <View style={styles.container}>
+    <View>
       <Navbar
         pages={[
           {
@@ -32,8 +36,4 @@ const Books = (props) => {
   )
 }
 
-Books.propTypes = {
-  books: PropsTypes.object
-}
-
-export default Books
+export default BooksComponent

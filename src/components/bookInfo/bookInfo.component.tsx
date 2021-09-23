@@ -1,16 +1,24 @@
 import React from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, ViewStyle } from 'react-native'
 import styles from './style'
 import ButtonWrap from '../buttonWrap/buttonWrap.component'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
 
-const BookInfo = (props) => {
+interface Props {
+  title: string
+  author: string
+  description: string
+  deleteBook: () => void
+  editBook: () => void
+  style?: ViewStyle
+}
+
+const BookInfo: React.FC<Props> = (props) => {
   const { title, author, description, deleteBook, editBook, style } = props
   const { t } = useTranslation('common')
 
   return (
-    <View style={[style, styles.content]}>
+    <View style={[style]}>
       <View style={styles.titleWrap}>
         <Text style={styles.title}> {title} </Text>
         <Text style={styles.author}> {author} </Text>
@@ -36,15 +44,6 @@ const BookInfo = (props) => {
       />
     </View>
   )
-}
-
-BookInfo.propTypes = {
-  title: PropTypes.string,
-  author: PropTypes.string,
-  description: PropTypes.string,
-  deleteBook: PropTypes.func.isRequired,
-  editBook: PropTypes.func.isRequired,
-  style: PropTypes.object
 }
 
 export default BookInfo

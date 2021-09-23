@@ -1,11 +1,14 @@
 import axios from 'axios'
+import { Books } from '../redux/types'
 
 class BooksService {
+  private PATH: string
+
   constructor() {
-    this.PATH = 'http://192.168.0.102:3000/'
+    this.PATH = 'http://192.168.0.112:3000/'
   }
 
-  async getAllBooks() {
+  async getAllBooks(): Promise<Books> {
     try {
       const res = await axios({
         method: 'get',
@@ -19,7 +22,11 @@ class BooksService {
     }
   }
 
-  async addBook(title, author, description) {
+  async addBook(
+    title: string,
+    author: string,
+    description: string
+  ): Promise<number> {
     try {
       const res = await axios({
         method: 'post',
@@ -43,7 +50,12 @@ class BooksService {
     }
   }
 
-  async updateBook(id, title, author, description) {
+  async updateBook(
+    id: number,
+    title: string,
+    author: string,
+    description: string
+  ): Promise<boolean> {
     try {
       await axios({
         method: 'put',
@@ -65,7 +77,7 @@ class BooksService {
     }
   }
 
-  async deleteBook(id) {
+  async deleteBook(id: number): Promise<boolean> {
     try {
       await axios({
         method: 'delete',

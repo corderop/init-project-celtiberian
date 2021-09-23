@@ -1,10 +1,15 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, ViewStyle } from 'react-native'
+import { Books } from '../../redux/types'
 import BookElement from '../bookElement/bookElement.component'
 import styles from './style'
-import PropTypes from 'prop-types'
 
-const BooksList = (props) => {
+interface Props {
+  books: Books
+  style?: ViewStyle
+}
+
+const BooksList: React.FC<Props> = (props) => {
   const { books, style } = props
 
   return (
@@ -21,11 +26,6 @@ const BooksList = (props) => {
         ))}
     </ScrollView>
   )
-}
-
-BooksList.propTypes = {
-  books: PropTypes.object,
-  style: PropTypes.object
 }
 
 export default BooksList

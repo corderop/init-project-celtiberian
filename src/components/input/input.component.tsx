@@ -1,13 +1,17 @@
 import React from 'react'
-import { Text, View, TextInput } from 'react-native'
+import { Text, View, TextInput, ViewStyle } from 'react-native'
 import styles from './style'
-import PropTypes from 'prop-types'
+import { InputType } from './input.type'
 
-const Input = (props) => {
+interface Props extends InputType {
+  style?: ViewStyle
+}
+
+const Input: React.FC<Props> = (props) => {
   const { title, defaultValue, onChangeText, style } = props
 
   return (
-    <View style={[style, styles.inputWrap]}>
+    <View style={[style]}>
       <Text style={styles.label}> {title} </Text>
       <TextInput
         style={styles.input}
@@ -16,13 +20,6 @@ const Input = (props) => {
       />
     </View>
   )
-}
-
-Input.propTypes = {
-  title: PropTypes.string.isRequired,
-  defaultValue: PropTypes.string,
-  onChangeText: PropTypes.func.isRequired,
-  style: PropTypes.object
 }
 
 export default Input

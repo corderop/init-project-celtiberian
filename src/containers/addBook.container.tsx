@@ -1,11 +1,14 @@
 import React from 'react'
 import { Actions } from 'react-native-router-flux'
-import { connect } from 'react-redux'
-import { createBook } from '../actions/books'
+import { connect, ConnectedProps } from 'react-redux'
+import { createBook } from '../redux/actions/books'
 import AddBook from '../components/addBook/addBook.component'
-import PropTypes from 'prop-types'
 
-const AddBookContainer = (props) => {
+interface Props extends PropsFromRedux {
+  createBook: (title: string, author: string, description: string) => void
+}
+
+const AddBookContainer: React.FC<Props> = (props) => {
   const { createBook } = props
 
   const cancelBookCreation = () => {
@@ -25,8 +28,7 @@ const AddBookContainer = (props) => {
   )
 }
 
-AddBookContainer.propTypes = {
-  createBook: PropTypes.func
-}
+const connector = connect(null, { createBook })
+type PropsFromRedux = ConnectedProps<typeof connector>
 
-export default connect(null, { createBook })(AddBookContainer)
+export default connector(AddBookContainer)

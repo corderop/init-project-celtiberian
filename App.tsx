@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect } from 'react'
 import { Provider } from 'react-redux'
 import { Router, Scene, Stack } from 'react-native-router-flux'
-import store from './src/store'
+import store from './src/redux/index'
 import BooksContainer from './src/containers/books.container'
 import BookContainer from './src/containers/book.container'
 import EditBookContainer from './src/containers/editBook.container'
@@ -12,7 +12,7 @@ import common_en from './src/translation/en.json'
 import common_es from './src/translation/es.json'
 import Loading from './src/components/loading/loading.component'
 
-export default function App() {
+const App: React.FC = () => {
   useEffect(() => {
     selectedLanguage()
   }, [])
@@ -48,3 +48,5 @@ export default function App() {
     </Suspense>
   )
 }
+
+export default App

@@ -4,8 +4,8 @@ import {
   DELETE_BOOK,
   NEW_BOOKS,
   DELETE_ALL_BOOKS
-} from '../src/actions/types'
-import booksReducer from '../src/reducers/books'
+} from '../src/redux/types'
+import booksReducer from '../src/redux/reducers/books'
 
 // Test for the book reducer
 describe('Books reducer', () => {
@@ -13,13 +13,13 @@ describe('Books reducer', () => {
     otherState: true,
     books: {
       1: {
-        id: '1',
+        id: 1,
         title: 'Harry Potter',
         author: 'J.K. Rowling',
         description: 'A magician kid'
       },
       2: {
-        id: '2',
+        id: 2,
         title: 'The Pillars of the Earth',
         author: 'Ken Follet',
         description: 'A really big book'
@@ -27,27 +27,19 @@ describe('Books reducer', () => {
     }
   }
 
-  test('Undefined action', () => {
-    const newState = booksReducer(prevState, '')
-
-    expect(newState).toMatchObject(prevState)
-  })
-
   test('New books', () => {
     const payload = {
-      books: {
-        1: {
-          id: '1',
-          title: 'Other book',
-          author: 'Pablo Cordero',
-          description: 'Programming book'
-        },
-        3: {
-          id: '3',
-          title: 'A new book',
-          author: 'Linus',
-          description: 'A Linux book'
-        }
+      1: {
+        id: 1,
+        title: 'Other book',
+        author: 'Pablo Cordero',
+        description: 'Programming book'
+      },
+      3: {
+        id: 3,
+        title: 'A new book',
+        author: 'Linus',
+        description: 'A Linux book'
       }
     }
 
@@ -56,13 +48,12 @@ describe('Books reducer', () => {
       payload: payload
     })
 
-    expect(newState.otherState).toBe(true) // Check that only changes books
-    expect(newState.books).toMatchObject(payload.books)
+    expect(newState.books).toMatchObject(payload)
   })
 
   test('Create book', () => {
     const payload = {
-      id: '3',
+      id: 3,
       title: 'Other book',
       author: 'Pablo Cordero',
       description: 'Programming book'
@@ -73,25 +64,24 @@ describe('Books reducer', () => {
       payload: payload
     })
 
-    expect(newState.otherState).toBe(true)
-    expect(newState.books['1']).toMatchObject({
-      id: '1',
+    expect(newState.books[1]).toMatchObject({
+      id: 1,
       title: 'Harry Potter',
       author: 'J.K. Rowling',
       description: 'A magician kid'
     })
-    expect(newState.books['2']).toMatchObject({
-      id: '2',
+    expect(newState.books[2]).toMatchObject({
+      id: 2,
       title: 'The Pillars of the Earth',
       author: 'Ken Follet',
       description: 'A really big book'
     })
-    expect(newState.books['3']).toMatchObject(payload)
+    expect(newState.books[3]).toMatchObject(payload)
   })
 
   test('Update book', () => {
     const payload = {
-      id: '2',
+      id: 2,
       title: 'Other book',
       author: 'Pablo Cordero',
       description: 'Programming book'
@@ -102,31 +92,28 @@ describe('Books reducer', () => {
       payload: payload
     })
 
-    expect(newState.otherState).toBe(true)
-    expect(newState.books['1']).toMatchObject({
-      id: '1',
+    expect(newState.books[1]).toMatchObject({
+      id: 1,
       title: 'Harry Potter',
       author: 'J.K. Rowling',
       description: 'A magician kid'
     })
-    expect(newState.books['2']).toMatchObject(payload)
+    expect(newState.books[2]).toMatchObject(payload)
   })
 
   test('Delete book', () => {
     const newState = booksReducer(prevState, {
       type: DELETE_BOOK,
-      payload: { id: '2' }
+      payload: 2
     })
 
-    expect(newState.otherState).toBe(true)
-    expect(newState.books['1']).toBeDefined()
-    expect(newState.books['2']).toBeUndefined()
+    expect(newState.books[1]).toBeDefined()
+    expect(newState.books[2]).toBeUndefined()
   })
 
   test('Delete all books', () => {
     const newState = booksReducer(prevState, { type: DELETE_ALL_BOOKS })
 
-    expect(newState.otherState).toBe(true)
     expect(newState.books).toMatchObject({})
   })
 })

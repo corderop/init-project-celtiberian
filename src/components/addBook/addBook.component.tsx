@@ -4,10 +4,15 @@ import styles from './style'
 import Navbar from '../navbar/navbar.component'
 import Form from '../form/form.component'
 import { Actions } from 'react-native-router-flux'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { ObjectField } from '../form/form.types'
 
-const AddBook = (props) => {
+interface Props {
+  createBook: (book: ObjectField) => void
+  cancelBookCreation: () => void
+}
+
+const AddBook: React.FC<Props> = (props) => {
   const { createBook, cancelBookCreation } = props
   const { t } = useTranslation('common')
 
@@ -30,9 +35,17 @@ const AddBook = (props) => {
       <Form
         style={styles.form}
         fields={[
-          { key: 'title', title: t('bookAttributes.title') },
-          { key: 'author', title: t('bookAttributes.author') },
-          { key: 'description', title: t('bookAttributes.description') }
+          { key: 'title', title: t('bookAttributes.title'), defaultValue: '' },
+          {
+            key: 'author',
+            title: t('bookAttributes.author'),
+            defaultValue: ''
+          },
+          {
+            key: 'description',
+            title: t('bookAttributes.description'),
+            defaultValue: ''
+          }
         ]}
         submitTitle={t('buttonsText.submit')}
         onSubmit={createBook}
@@ -41,11 +54,6 @@ const AddBook = (props) => {
       />
     </View>
   )
-}
-
-AddBook.propTypes = {
-  createBook: PropTypes.func.isRequired,
-  cancelBookCreation: PropTypes.func.isRequired
 }
 
 export default AddBook

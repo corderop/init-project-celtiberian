@@ -1,13 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import { View, ViewStyle } from 'react-native'
 import styles from './style'
 import Input from '../input/input.component'
 import ButtonWrap from '../buttonWrap/buttonWrap.component'
-import PropTypes from 'prop-types'
+import { InputType } from '../input/input.type'
+import { ObjectField } from './form.types'
 
-const Form = (props) => {
+interface FormInputType extends InputType {
+  key: string
+}
+
+interface Props {
+  fields: Array<FormInputType>
+  cancelTitle: string
+  submitTitle: string
+  onCancel: () => void
+  onSubmit: (values: ObjectField) => void
+  style?: ViewStyle
+}
+
+const Form: React.FC<Props> = (props) => {
   const { fields, cancelTitle, submitTitle, onCancel, onSubmit, style } = props
-  const [values, setValues] = useState({})
+  const [values, setValues] = useState<ObjectField>({})
 
   useEffect(() => {
     const nextState = {}
@@ -35,7 +49,7 @@ const Form = (props) => {
   }
 
   return (
-    <View style={[style, styles.button]}>
+    <View style={[style]}>
       {fields.map((f) => (
         <Input
           style={styles.input}
@@ -54,21 +68,6 @@ const Form = (props) => {
       />
     </View>
   )
-}
-
-Form.propTypes = {
-  fields: PropTypes.arrayOf(
-    PropTypes.exact({
-      key: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      defaultValue: PropTypes.string
-    })
-  ),
-  cancelTitle: PropTypes.string.isRequired,
-  submitTitle: PropTypes.string.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  style: PropTypes.object
 }
 
 export default Form

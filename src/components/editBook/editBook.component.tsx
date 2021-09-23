@@ -4,15 +4,22 @@ import styles from './style'
 import Navbar from '../navbar/navbar.component'
 import Form from '../form/form.component'
 import { Actions } from 'react-native-router-flux'
-import PropTypes from 'prop-types'
 import { useTranslation } from 'react-i18next'
+import { Book } from '../../redux/types'
+import { ObjectField } from '../form/form.types'
 
-const EditBook = (props) => {
+interface Props {
+  book: Book
+  cancelAction: () => void
+  editBook: (book: ObjectField) => void
+}
+
+const EditBook: React.FC<Props> = (props) => {
   const { book, cancelAction, editBook } = props
   const { t } = useTranslation('common')
 
   return (
-    <View style={styles.container}>
+    <View>
       <Navbar
         pages={[
           {
@@ -55,17 +62,6 @@ const EditBook = (props) => {
       )}
     </View>
   )
-}
-
-EditBook.propTypes = {
-  book: PropTypes.exact({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    description: PropTypes.string
-  }),
-  cancelAction: PropTypes.func,
-  editBook: PropTypes.func
 }
 
 export default EditBook

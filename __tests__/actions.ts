@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { applyMiddleware, createStore } from 'redux'
-import booksReducer from '../src/reducers/books'
+import { applyMiddleware, createStore, Store } from 'redux'
+import booksReducer from '../src/redux/reducers/books'
 import thunk from 'redux-thunk'
 import {
   getBooks,
@@ -8,22 +8,23 @@ import {
   updateBook,
   deleteBook,
   deleteAllBooks
-} from '../src/actions/books'
+} from '../src/redux/actions/books'
+import { Action, State } from '../src/redux/types'
 
 // Mock HTTP requests
 jest.mock('axios')
+const mockedAxios = axios as jest.Mocked<typeof axios>
 
-const INITIAL_STATE = {
-  otherData: true,
+const INITIAL_STATE: State = {
   books: {
     1: {
-      id: '1',
+      id: 1,
       title: 'Harry Potter',
       author: 'J.K. Rowling',
       description: 'A magician kid'
     },
     2: {
-      id: '2',
+      id: 2,
       title: 'The Pillars of the Earth',
       author: 'Ken Follet',
       description: 'A really big book'
@@ -34,7 +35,7 @@ const INITIAL_STATE = {
 // Tests
 describe('Books actions', () => {
   describe('Get books', () => {
-    let store
+    let store: Store<State, Action>
 
     beforeEach(() => {
       // Create mocked store to test Redux actions
@@ -49,21 +50,24 @@ describe('Books actions', () => {
       const data = {
         data: {
           1: {
-            id: '1',
+            id: 1,
             title: 'Test title 1',
             author: 'Test author 1',
             description: 'Test description 1'
           },
           2: {
-            id: '2',
+            id: 2,
             title: 'Test title 2',
             author: 'Test author 2',
             description: 'Test description 2'
           }
         }
       }
-      axios.mockImplementationOnce(() => Promise.resolve(data))
-
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      mockedAxios.mockImplementationOnce(() => Promise.resolve(data))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       await store.dispatch(getBooks())
 
       const state = store.getState()
@@ -74,10 +78,14 @@ describe('Books actions', () => {
     })
 
     test('Nerwork error getting the books', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => {
         throw 'API ERROR'
       })
 
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       await store.dispatch(getBooks())
 
       const state = store.getState()
@@ -98,7 +106,9 @@ describe('Books actions', () => {
     })
 
     test('Create book properly', async () => {
-      axios.mockImplementationOnce(() => Promise.resolve({ data: { id: '3' } }))
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      axios.mockImplementationOnce(() => Promise.resolve({ data: { id: 3 } }))
 
       await store.dispatch(
         createBook('Test title', 'Test author', 'Test description')
@@ -110,7 +120,7 @@ describe('Books actions', () => {
         books: {
           ...INITIAL_STATE.books,
           3: {
-            id: '3',
+            id: 3,
             title: 'Test title',
             author: 'Test author',
             description: 'Test description'
@@ -120,6 +130,8 @@ describe('Books actions', () => {
     })
 
     test('Nerwork error creating the books', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => {
         throw 'API ERROR'
       })
@@ -146,10 +158,12 @@ describe('Books actions', () => {
     })
 
     test('Update book properly', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => Promise.resolve())
 
       await store.dispatch(
-        updateBook('2', 'Test title', 'Test description', 'Test author')
+        updateBook(2, 'Test title', 'Test description', 'Test author')
       )
 
       const state = store.getState()
@@ -158,7 +172,7 @@ describe('Books actions', () => {
         books: {
           ...INITIAL_STATE.books,
           2: {
-            id: '2',
+            id: 2,
             title: 'Test title',
             author: 'Test author',
             description: 'Test description'
@@ -168,12 +182,14 @@ describe('Books actions', () => {
     })
 
     test('Nerwork error updating the books', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => {
         throw 'API ERROR'
       })
 
       await store.dispatch(
-        updateBook('2', 'Test title', 'Test author', 'Test description')
+        updateBook(2, 'Test title', 'Test author', 'Test description')
       )
 
       const state = store.getState()
@@ -194,9 +210,11 @@ describe('Books actions', () => {
     })
 
     test('Delete book properly', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => Promise.resolve())
 
-      await store.dispatch(deleteBook('2'))
+      await store.dispatch(deleteBook(2))
 
       const state = store.getState()
       expect(state).toMatchObject({
@@ -208,11 +226,13 @@ describe('Books actions', () => {
     })
 
     test('Nerwork error updating the books', async () => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       axios.mockImplementationOnce(() => {
         throw 'API ERROR'
       })
 
-      await store.dispatch(deleteBook('2'))
+      await store.dispatch(deleteBook(2))
 
       const state = store.getState()
       expect(state).toMatchObject(INITIAL_STATE)

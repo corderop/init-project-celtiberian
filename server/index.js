@@ -5,13 +5,13 @@ let lastId = 2
 
 let books = {
   1: {
-    id: '1',
+    id: 1,
     title: 'Harry Potter',
     author: 'J.K. Rowling',
     description: 'A magician kid'
   },
   2: {
-    id: '2',
+    id: 2,
     title: 'The Pillars of the Earth',
     author: 'Ken Follet',
     description: 'A really big book'
