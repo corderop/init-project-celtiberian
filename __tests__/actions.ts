@@ -13,7 +13,6 @@ import { Action, State } from '../src/redux/types'
 
 // Mock HTTP requests
 jest.mock('axios')
-const mockedAxios = axios as jest.Mocked<typeof axios>
 
 const INITIAL_STATE: State = {
   books: {
@@ -65,7 +64,7 @@ describe('Books actions', () => {
       }
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      mockedAxios.mockImplementationOnce(() => Promise.resolve(data))
+      axios.mockImplementationOnce(() => Promise.resolve(data))
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       await store.dispatch(getBooks())
