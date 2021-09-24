@@ -21,6 +21,7 @@ const ButtonWrap: React.FC<Props> = (props) => {
       {buttons.map((b) => (
         <ButtonComponent
           key={b.key}
+          testID={`button.${b.key}`}
           color={b.color}
           text={b.text}
           onPress={b.onPress}

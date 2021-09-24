@@ -24,7 +24,6 @@ describe('BookElement component', () => {
         author={'Author'}
         onPress={onPressEvent}
         style={{ backgroundColor: 'aquamarine' }}
-        testID={'bookElement'}
       />
     )
 

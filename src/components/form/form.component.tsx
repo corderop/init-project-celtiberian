@@ -54,6 +54,7 @@ const Form: React.FC<Props> = (props) => {
         <Input
           style={styles.input}
           key={f.key}
+          testID={f.key}
           title={f.title}
           defaultValue={f.defaultValue}
           onChangeText={(val) => changeValue(val, f.key)}

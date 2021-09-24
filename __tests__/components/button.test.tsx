@@ -19,12 +19,7 @@ describe('Button component', () => {
 
   beforeAll(async () => {
     const { getByTestId } = render(
-      <ButtonComponent
-        text={'Text'}
-        color={'#FFF'}
-        testID={'button'}
-        onPress={onPressEvent}
-      />
+      <ButtonComponent text={'Text'} color={'#FFF'} onPress={onPressEvent} />
     )
 
     button = await waitFor(async () => getByTestId('button'))

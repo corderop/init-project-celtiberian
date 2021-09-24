@@ -11,9 +11,13 @@ const Navbar: React.FC<Props> = (props) => {
   const { pages } = props
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={'navbar'}>
       {pages.map((p) => (
-        <Pressable key={p.key} style={styles.element} onPressOut={p.action}>
+        <Pressable
+          key={p.key}
+          style={styles.element}
+          onPressOut={p.action}
+          testID={'navbar.pressable'}>
           <Text style={styles.text}>{p.text}</Text>
         </Pressable>
       ))}

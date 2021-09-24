@@ -4,16 +4,20 @@ import styles from './style'
 import { InputType } from './input.type'
 
 interface Props extends InputType {
+  testID?: string
   style?: ViewStyle
 }
 
 const Input: React.FC<Props> = (props) => {
-  const { title, defaultValue, onChangeText, style } = props
+  const { title, defaultValue, onChangeText, testID, style } = props
 
   return (
-    <View style={[style]}>
-      <Text style={styles.label}> {title} </Text>
+    <View style={[style]} testID={`input.${testID}`}>
+      <Text style={styles.label} testID={`testLabel.${testID}`}>
+        {title}
+      </Text>
       <TextInput
+        testID={`testInput.${testID}`}
         style={styles.input}
         onChangeText={onChangeText}
         defaultValue={defaultValue}

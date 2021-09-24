@@ -31,7 +31,8 @@
     "plugins": [
         "react",
         "prettier",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "detox"
     ],
     "rules": {
         "switch-colon-spacing": ["error", {"after": true, "before": false}],
@@ -46,5 +47,14 @@
         "react": {
             "version": "detect"
         }
-    }
+    },
+    "overrides": [
+        {
+            "files": ["*.e2e.js"],
+            "env": {
+                "detox/detox": true,
+                "jest": true
+            }
+        }
+    ]
 }
