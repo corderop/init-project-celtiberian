@@ -1,6 +1,5 @@
 import React from 'react'
 import { Pressable, Text, ViewStyle } from 'react-native'
-import { Actions } from 'react-native-router-flux'
 import styles from './style'
 
 interface Props {

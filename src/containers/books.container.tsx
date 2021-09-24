@@ -3,6 +3,7 @@ import { connect, ConnectedProps } from 'react-redux'
 import { getBooks } from '../redux/actions/books'
 import BooksComponent from '../components/books/books.component'
 import { Books } from '../redux/types'
+import { Actions } from 'react-native-router-flux'
 
 interface Props extends PropsFromRedux {
   books: Books
@@ -16,7 +17,17 @@ const BooksContainer: React.FC<Props> = (props) => {
     getBooks()
   }, [])
 
-  return <BooksComponent books={books} />
+  const onBookPress = (id: number): void => {
+    Actions.push('book', { id: id })
+  }
+
+  return (
+    <BooksComponent
+      books={books}
+      onBookPress={onBookPress}
+      testID={'booksContainer'}
+    />
+  )
 }
 
 const mapStateToProps = (state) => ({
