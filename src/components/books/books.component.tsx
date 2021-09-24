@@ -9,10 +9,11 @@ import { Books } from '../../redux/types'
 
 interface Props {
   books: Books
+  onBookPress?: (id: number) => void
 }
 
 const BooksComponent: React.FC<Props> = (props) => {
-  const { books } = props
+  const { books, onBookPress } = props
   const { t } = useTranslation('common')
 
   return (
@@ -31,7 +32,11 @@ const BooksComponent: React.FC<Props> = (props) => {
           }
         ]}
       />
-      <BooksList style={styles.bookList} books={books} />
+      <BooksList
+        style={styles.bookList}
+        books={books}
+        onBookPress={onBookPress}
+      />
     </View>
   )
 }

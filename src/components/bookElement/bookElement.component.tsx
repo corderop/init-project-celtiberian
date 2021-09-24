@@ -6,17 +6,16 @@ import styles from './style'
 interface Props {
   title: string
   author: string
-  id: number
+  onPress?: () => void
   style?: ViewStyle
+  testID?: string
 }
 
 const BookElement: React.FC<Props> = (props) => {
-  const { title, author, id, style } = props
+  const { title, author, onPress, style, testID } = props
 
   return (
-    <Pressable
-      style={[style, styles.book]}
-      onPress={() => Actions.push('book', { id: id })}>
+    <Pressable testID={testID} style={[style, styles.book]} onPress={onPress}>
       <Text style={styles.title}>{title}</Text>
       <Text>{author}</Text>
     </Pressable>

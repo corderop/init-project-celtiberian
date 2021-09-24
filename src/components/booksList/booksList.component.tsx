@@ -6,22 +6,24 @@ import styles from './style'
 
 interface Props {
   books: Books
+  onBookPress?: (id: number) => void
   style?: ViewStyle
+  testID?: string
 }
 
 const BooksList: React.FC<Props> = (props) => {
-  const { books, style } = props
+  const { books, onBookPress, style, testID } = props
 
   return (
-    <ScrollView style={[style]}>
+    <ScrollView style={[style]} testID={testID}>
       {books &&
-        Object.keys(books).map((key) => (
+        Object.values(books).map((book) => (
           <BookElement
             style={styles.book}
-            key={key}
-            id={key}
-            author={books[key].author}
-            title={books[key].title}
+            key={book.id}
+            onPress={() => onBookPress(book.id)}
+            author={book.author}
+            title={book.title}
           />
         ))}
     </ScrollView>

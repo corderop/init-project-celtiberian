@@ -35,7 +35,6 @@ describe('Button component', () => {
   })
 
   test('Check color prop', async () => {
-    // Check color prop
     expect(button).toHaveStyle({
       backgroundColor: '#FFF'
     })
