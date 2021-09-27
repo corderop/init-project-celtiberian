@@ -25,7 +25,7 @@ const BooksContainer: React.FC<Props> = (props) => {
     <BooksComponent
       books={books}
       onBookPress={onBookPress}
-      testID={'booksContainer'}
+      testID={'booksComponent'}
     />
   )
 }

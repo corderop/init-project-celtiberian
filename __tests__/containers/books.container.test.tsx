@@ -83,7 +83,7 @@ describe('Books container', () => {
       <AppMock store={store} Component={BooksContainer} componentProps={{}} />
     )
 
-    booksContainer = await waitFor(async () => getByTestId('booksContainer'))
+    booksContainer = await waitFor(async () => getByTestId('booksComponent'))
   })
 
   afterAll(() => {
