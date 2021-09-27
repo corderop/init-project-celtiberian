@@ -1,11 +1,6 @@
 import React from 'react'
 import Input from '../../src/components/input/input.component'
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor
-} from '@testing-library/react-native'
+import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
 import modulesMock from '../../__mock__/modules'
 import { Text, TextInput } from 'react-native'
@@ -30,7 +25,7 @@ describe('Input component', () => {
       />
     )
 
-    inputElement = await waitFor(async () => getByTestId('input.1'))
+    inputElement = getByTestId('input.1')
   })
 
   afterAll(() => {

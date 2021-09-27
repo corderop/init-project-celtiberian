@@ -1,11 +1,6 @@
 import React from 'react'
 import BookElement from '../../src/components/bookElement/bookElement.component'
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor
-} from '@testing-library/react-native'
+import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
 import modulesMock from '../../__mock__/modules'
 import { Text } from 'react-native'
@@ -28,7 +23,7 @@ describe('BookElement component', () => {
       />
     )
 
-    bookElement = await waitFor(async () => getByTestId('bookElement'))
+    bookElement = getByTestId('bookElement')
   })
 
   afterAll(() => {
