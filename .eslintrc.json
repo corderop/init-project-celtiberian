@@ -9,7 +9,8 @@
         "*.json",
         "*babel.config.js",
         "*jest.config.js",
-        "*metro.config.js"
+        "*metro.config.js",
+        "*assetsTransformer.js"
     ],
     "extends": [
         "eslint:recommended",
