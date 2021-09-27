@@ -11,15 +11,32 @@ import i18next from 'i18next'
 import common_en from './src/translation/en.json'
 import common_es from './src/translation/es.json'
 import Loading from './src/components/loading/loading.component'
+import { getLocales } from 'react-native-localize'
 
 const App: React.FC = () => {
   useEffect(() => {
     selectedLanguage()
   }, [])
 
+  const selectLanguagePreference = (): string => {
+    const userLanguages = getLocales()
+    const defaultLanguage = 'en'
+    const availableLanguages = ['en', 'es']
+
+    for (let i = 0; i < userLanguages.length; i++) {
+      const current = userLanguages[i].languageCode
+      if (availableLanguages.includes(current)) {
+        return current
+      }
+    }
+
+    // If no available language is the user preference retunr default
+    return defaultLanguage
+  }
+
   const selectedLanguage = () => {
     i18next.init({
-      lng: 'es',
+      lng: selectLanguagePreference(),
       resources: {
         en: {
           common: common_en
