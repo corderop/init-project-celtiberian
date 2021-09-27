@@ -11,14 +11,16 @@ interface Props {
   deleteBook: () => void
   editBook: () => void
   style?: ViewStyle
+  testID?: string
 }
 
 const BookInfo: React.FC<Props> = (props) => {
-  const { title, author, description, deleteBook, editBook, style } = props
+  const { title, author, description, deleteBook, editBook, style, testID } =
+    props
   const { t } = useTranslation('common')
 
   return (
-    <View style={[style]}>
+    <View style={[style]} testID={testID}>
       <View style={styles.titleWrap}>
         <Text style={styles.title}> {title} </Text>
         <Text style={styles.author}> {author} </Text>
