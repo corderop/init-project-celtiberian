@@ -1,5 +1,5 @@
 import React from 'react'
-import AddBook from '../../src/components/addBook/addBook.component'
+import EditBook from '../../src/components/editBook/editBook.component'
 import { ObjectField } from '../../src/components/form/form.types'
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
@@ -38,34 +38,36 @@ jest.mock('react-i18next', () => ({
   })
 }))
 
-describe('AddBook component', () => {
+describe('EditBook component', () => {
   let titleInput: ReactTestInstance
   let authorInput: ReactTestInstance
   let descriptionInput: ReactTestInstance
   let submitButton: ReactTestInstance
   let cancelButton: ReactTestInstance
-  const createBookEvent = jest.fn((book: ObjectField) => {
+  const editBookEvent = jest.fn((book: ObjectField) => {
     book
   })
-  const cancelBookCreationEvent = jest.fn()
+  const cancelBookEditEvent = jest.fn()
 
   beforeEach(async () => {
     const { getByTestId } = render(
-      <AddBook
-        createBook={createBookEvent}
-        cancelBookCreation={cancelBookCreationEvent}
+      <EditBook
+        book={{
+          id: 1,
+          title: 'Title',
+          author: 'Author',
+          description: 'Description'
+        }}
+        editBook={editBookEvent}
+        cancelAction={cancelBookEditEvent}
       />
     )
 
-    titleInput = getByTestId('addBook.form.input.title.input')
-    authorInput = getByTestId('addBook.form.input.author.input')
-    descriptionInput = getByTestId('addBook.form.input.description.input')
-    cancelButton = getByTestId('addBook.form.buttonWrap.0')
-    submitButton = getByTestId('addBook.form.buttonWrap.1')
-
-    fireEvent.changeText(titleInput, 'Test title')
-    fireEvent.changeText(authorInput, 'Test author')
-    fireEvent.changeText(descriptionInput, 'Test description')
+    titleInput = getByTestId('editBook.form.input.title.input')
+    authorInput = getByTestId('editBook.form.input.author.input')
+    descriptionInput = getByTestId('editBook.form.input.description.input')
+    cancelButton = getByTestId('editBook.form.buttonWrap.0')
+    submitButton = getByTestId('editBook.form.buttonWrap.1')
   })
 
   afterEach(async () => {
@@ -74,12 +76,22 @@ describe('AddBook component', () => {
 
   test('Cancel callback is called', async () => {
     fireEvent.press(cancelButton)
-    expect(cancelBookCreationEvent).toHaveBeenCalled()
+    expect(cancelBookEditEvent).toHaveBeenCalled()
+  })
+
+  test('Default values are correct', async () => {
+    expect(titleInput).toHaveProp('defaultValue', 'Title')
+    expect(authorInput).toHaveProp('defaultValue', 'Author')
+    expect(descriptionInput).toHaveProp('defaultValue', 'Description')
   })
 
   test('Submit callback is called with the correct values', () => {
+    fireEvent.changeText(titleInput, 'Test title')
+    fireEvent.changeText(authorInput, 'Test author')
+    fireEvent.changeText(descriptionInput, 'Test description')
     fireEvent.press(submitButton)
-    expect(createBookEvent).toHaveBeenCalledWith({
+
+    expect(editBookEvent).toHaveBeenCalledWith({
       title: 'Test title',
       author: 'Test author',
       description: 'Test description'

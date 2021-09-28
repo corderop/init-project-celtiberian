@@ -3,8 +3,6 @@ import BookComponent from '../../src/components/book/book.component'
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
 import { ReactTestInstance } from 'react-test-renderer'
-import { Text } from 'react-native'
-import BookInfo from '../../src/components/bookInfo/bookInfo.component'
 
 jest.mock('react-native-reanimated', () => {
   // eslint-disable-next-line @typescript-eslint/no-var-requires

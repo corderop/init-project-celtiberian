@@ -19,6 +19,7 @@ const BooksComponent: React.FC<Props> = (props) => {
   return (
     <View testID={'booksComponent'}>
       <Navbar
+        testID={'booksComponent.navbar'}
         pages={[
           {
             key: 0,
@@ -33,6 +34,7 @@ const BooksComponent: React.FC<Props> = (props) => {
         ]}
       />
       <BooksList
+        testID={'booksComponent.bookList'}
         style={styles.bookList}
         books={books}
         onBookPress={onBookPress}

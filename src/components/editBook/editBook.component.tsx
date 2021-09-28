@@ -36,6 +36,7 @@ const EditBook: React.FC<Props> = (props) => {
       />
       {book && (
         <Form
+          testID={'editBook.form'}
           style={styles.form}
           fields={[
             {
