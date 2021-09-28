@@ -6,8 +6,12 @@
     "web": "expo start --web",
     "start": "react-native start",
     "test": "jest",
+    "test:components": "jest components",
+    "test:containers": "jest containers",
     "test:reducers": "jest reducers",
     "test:actions": "jest actions",
+    "test:e2e": "npx detox test -c android ",
+    "test:e2e:build": "npx detox build -c android ",
     "linter": "npx eslint *.js *.tsx src/** __tests__/**",
     "linter:fix": "npx eslint --fix *.js *.tsx src/** __tests__/**"
   },
