@@ -10,7 +10,8 @@ import { State, Action } from '../src/redux/types'
 
 interface Props {
   store: Store<State, Action>
-  Component: React.FC
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  Component: React.FC<any>
   componentProps: {
     [key: string]: unknown
   }
