@@ -11,17 +11,18 @@ interface ButtonWithKey extends Button {
 interface Props {
   buttons: Array<ButtonWithKey>
   style?: ViewStyle
+  testID?: string
 }
 
 const ButtonWrap: React.FC<Props> = (props) => {
-  const { buttons, style } = props
+  const { buttons, style, testID } = props
 
   return (
-    <View style={[style, styles.buttonWrap]}>
+    <View style={[style, styles.buttonWrap]} testID={testID}>
       {buttons.map((b) => (
         <ButtonComponent
           key={b.key}
-          testID={`button.${b.key}`}
+          testID={`${testID}.${b.key}`}
           color={b.color}
           text={b.text}
           onPress={b.onPress}

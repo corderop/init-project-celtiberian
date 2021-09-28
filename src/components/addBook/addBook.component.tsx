@@ -19,6 +19,7 @@ const AddBook: React.FC<Props> = (props) => {
   return (
     <View testID={'addBook'}>
       <Navbar
+        testID={'navbar'}
         pages={[
           {
             key: 0,
@@ -33,6 +34,7 @@ const AddBook: React.FC<Props> = (props) => {
         ]}
       />
       <Form
+        testID={'addBook.form'}
         style={styles.form}
         fields={[
           { key: 'title', title: t('bookAttributes.title'), defaultValue: '' },

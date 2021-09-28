@@ -40,7 +40,9 @@ jest.mock('react-i18next', () => ({
 }))
 
 describe('Book component', () => {
-  let bookComponent: ReactTestInstance
+  let titleField: ReactTestInstance
+  let authorField: ReactTestInstance
+  let descriptionField: ReactTestInstance
   let deleteButton: ReactTestInstance
   let editButton: ReactTestInstance
   const deleteBookEvent = jest.fn()
@@ -60,9 +62,11 @@ describe('Book component', () => {
       />
     )
 
-    bookComponent = getByTestId('bookComponent')
-    deleteButton = getByTestId('button.0')
-    editButton = getByTestId('button.1')
+    titleField = getByTestId('bookComponent.bookInfo.title')
+    authorField = getByTestId('bookComponent.bookInfo.author')
+    descriptionField = getByTestId('bookComponent.bookInfo.description')
+    deleteButton = getByTestId('bookComponent.bookInfo.buttonWrap.0')
+    editButton = getByTestId('bookComponent.bookInfo.buttonWrap.1')
   })
 
   afterEach(async () => {
@@ -70,12 +74,9 @@ describe('Book component', () => {
   })
 
   test('Book information are display properly', () => {
-    const bookInfo = bookComponent.findByType(BookInfo)
-    const textFields = bookInfo.findAllByType(Text)
-
-    expect(textFields[0]).toHaveTextContent('Test title')
-    expect(textFields[1]).toHaveTextContent('Test author')
-    expect(textFields[2]).toHaveTextContent('Test description')
+    expect(titleField).toHaveTextContent('Test title')
+    expect(authorField).toHaveTextContent('Test author')
+    expect(descriptionField).toHaveTextContent('Test description')
   })
 
   test('Delete button trigger the action', async () => {
@@ -83,7 +84,7 @@ describe('Book component', () => {
     expect(deleteBookEvent).toHaveBeenCalled()
   })
 
-  test('Submit callback is called with the correct values', () => {
+  test('Submit button trigger the action', () => {
     fireEvent.press(editButton)
     expect(editBookEvent).toHaveBeenCalled()
   })

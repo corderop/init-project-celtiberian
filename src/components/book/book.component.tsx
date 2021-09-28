@@ -20,6 +20,7 @@ const BookComponent: React.FC<Props> = (props) => {
   return (
     <View testID={'bookComponent'}>
       <Navbar
+        testID={'navbar'}
         pages={[
           {
             key: 0,
@@ -35,6 +36,7 @@ const BookComponent: React.FC<Props> = (props) => {
       />
       {book && (
         <BookInfo
+          testID={'bookComponent.bookInfo'}
           style={styles.bookInfo}
           title={book.title || ''}
           author={book.author || ''}

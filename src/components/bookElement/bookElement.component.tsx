@@ -14,9 +14,11 @@ const BookElement: React.FC<Props> = (props) => {
   const { title, author, onPress, style, testID } = props
 
   return (
-    <Pressable testID={testID} style={[style, styles.book]} onPress={onPress}>
-      <Text style={styles.title}>{title}</Text>
-      <Text>{author}</Text>
+    <Pressable style={[style, styles.book]} onPress={onPress} testID={testID}>
+      <Text style={styles.title} testID={`${testID}.title`}>
+        {title}
+      </Text>
+      <Text testID={`${testID}.author`}>{author}</Text>
     </Pressable>
   )
 }

@@ -3,13 +3,14 @@ import BookElement from '../../src/components/bookElement/bookElement.component'
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
 import modulesMock from '../../__mock__/modules'
-import { Text } from 'react-native'
 import { ReactTestInstance } from 'react-test-renderer'
 
 modulesMock()
 
 describe('BookElement component', () => {
   let bookElement: ReactTestInstance
+  let titleElement: ReactTestInstance
+  let authorElement: ReactTestInstance
   const onPressEvent = jest.fn()
 
   beforeAll(async () => {
@@ -24,6 +25,8 @@ describe('BookElement component', () => {
     )
 
     bookElement = getByTestId('bookElement')
+    titleElement = getByTestId('bookElement.title')
+    authorElement = getByTestId('bookElement.author')
   })
 
   afterAll(() => {
@@ -37,10 +40,8 @@ describe('BookElement component', () => {
   })
 
   test('Text element exists with the correct content', () => {
-    const textComponent = bookElement.findAllByType(Text)
-    expect(textComponent.length).toBe(2)
-    expect(textComponent[0]).toHaveTextContent('Title')
-    expect(textComponent[1]).toHaveTextContent('Author')
+    expect(titleElement).toHaveTextContent('Title')
+    expect(authorElement).toHaveTextContent('Author')
   })
 
   test('OnPress function triggered on press', () => {

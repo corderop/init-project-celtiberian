@@ -12,12 +12,12 @@ const Input: React.FC<Props> = (props) => {
   const { title, defaultValue, onChangeText, testID, style } = props
 
   return (
-    <View style={[style]} testID={`input.${testID}`}>
-      <Text style={styles.label} testID={`testLabel.${testID}`}>
+    <View style={[style]} testID={`${testID}`}>
+      <Text style={styles.label} testID={`${testID}.label`}>
         {title}
       </Text>
       <TextInput
-        testID={`testInput.${testID}`}
+        testID={`${testID}.input`}
         style={styles.input}
         onChangeText={onChangeText}
         defaultValue={defaultValue}

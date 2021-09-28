@@ -17,10 +17,19 @@ interface Props {
   onCancel: () => void
   onSubmit: (values: ObjectField) => void
   style?: ViewStyle
+  testID?: string
 }
 
 const Form: React.FC<Props> = (props) => {
-  const { fields, cancelTitle, submitTitle, onCancel, onSubmit, style } = props
+  const {
+    fields,
+    cancelTitle,
+    submitTitle,
+    onCancel,
+    onSubmit,
+    style,
+    testID
+  } = props
   const [values, setValues] = useState<ObjectField>({})
 
   useEffect(() => {
@@ -49,12 +58,12 @@ const Form: React.FC<Props> = (props) => {
   }
 
   return (
-    <View style={[style]}>
+    <View style={[style]} testID={testID}>
       {fields.map((f) => (
         <Input
           style={styles.input}
           key={f.key}
-          testID={f.key}
+          testID={`${testID}.input.${f.key}`}
           title={f.title}
           defaultValue={f.defaultValue}
           onChangeText={(val) => changeValue(val, f.key)}
@@ -62,6 +71,7 @@ const Form: React.FC<Props> = (props) => {
       ))}
       <ButtonWrap
         style={styles.buttons}
+        testID={`${testID}.buttonWrap`}
         buttons={[
           { key: 0, color: '#F47174', text: cancelTitle, onPress: onCancel },
           { key: 1, color: '#93CAED', text: submitTitle, onPress: submitForm }

@@ -21,13 +21,7 @@ const BooksContainer: React.FC<Props> = (props) => {
     Actions.push('book', { id: id })
   }
 
-  return (
-    <BooksComponent
-      books={books}
-      onBookPress={onBookPress}
-      testID={'booksComponent'}
-    />
-  )
+  return <BooksComponent books={books} onBookPress={onBookPress} />
 }
 
 const mapStateToProps = (state) => ({

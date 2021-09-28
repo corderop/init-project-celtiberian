@@ -10,15 +10,14 @@ import { Books } from '../../redux/types'
 interface Props {
   books: Books
   onBookPress?: (id: number) => void
-  testID?: string
 }
 
 const BooksComponent: React.FC<Props> = (props) => {
-  const { books, onBookPress, testID } = props
+  const { books, onBookPress } = props
   const { t } = useTranslation('common')
 
   return (
-    <View testID={testID}>
+    <View testID={'booksComponent'}>
       <Navbar
         pages={[
           {

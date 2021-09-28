@@ -19,6 +19,7 @@ const BooksList: React.FC<Props> = (props) => {
       {books &&
         Object.values(books).map((book) => (
           <BookElement
+            testID={`${testID}.${book.id}`}
             style={styles.book}
             key={book.id}
             onPress={() => onBookPress(book.id)}

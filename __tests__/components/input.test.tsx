@@ -3,13 +3,14 @@ import Input from '../../src/components/input/input.component'
 import { cleanup, fireEvent, render } from '@testing-library/react-native'
 import '@testing-library/jest-native/extend-expect'
 import modulesMock from '../../__mock__/modules'
-import { Text, TextInput } from 'react-native'
 import { ReactTestInstance } from 'react-test-renderer'
 
 modulesMock()
 
 describe('Input component', () => {
   let inputElement: ReactTestInstance
+  let labelElement: ReactTestInstance
+  let textInputElement: ReactTestInstance
   const onChangeTextEvent = jest.fn((val: string) => {
     val
   })
@@ -20,12 +21,14 @@ describe('Input component', () => {
         title={'Title'}
         defaultValue={'Test value'}
         onChangeText={onChangeTextEvent}
-        testID={'1'}
+        testID={'input'}
         style={{ backgroundColor: 'aquamarine' }}
       />
     )
 
-    inputElement = getByTestId('input.1')
+    inputElement = getByTestId('input')
+    labelElement = getByTestId('input.label')
+    textInputElement = getByTestId('input.input')
   })
 
   afterAll(() => {
@@ -39,20 +42,15 @@ describe('Input component', () => {
   })
 
   test('Label exists with the provided test', () => {
-    const textComponent = inputElement.findByType(Text)
-    expect(textComponent).toHaveTextContent('Title')
-    expect(textComponent).toHaveProp('testID', 'testLabel.1')
+    expect(labelElement).toHaveTextContent('Title')
   })
 
   test('Input exists with the provided defaultValue', () => {
-    const textComponent = inputElement.findByType(TextInput)
-    expect(textComponent).toHaveProp('testID', 'testInput.1')
-    expect(textComponent).toHaveProp('defaultValue', 'Test value')
+    expect(textInputElement).toHaveProp('defaultValue', 'Test value')
   })
 
   test('Input call onChangeText function on change', () => {
-    const textComponent = inputElement.findByType(TextInput)
-    fireEvent.changeText(textComponent, 'Other text')
+    fireEvent.changeText(textInputElement, 'Other text')
     expect(onChangeTextEvent).toHaveBeenCalledWith('Other text')
   })
 })

@@ -22,12 +22,19 @@ const BookInfo: React.FC<Props> = (props) => {
   return (
     <View style={[style]} testID={testID}>
       <View style={styles.titleWrap}>
-        <Text style={styles.title}> {title} </Text>
-        <Text style={styles.author}> {author} </Text>
+        <Text style={styles.title} testID={`${testID}.title`}>
+          {title}
+        </Text>
+        <Text style={styles.author} testID={`${testID}.author`}>
+          {author}
+        </Text>
       </View>
-      <Text style={styles.description}> {description} </Text>
+      <Text style={styles.description} testID={`${testID}.description`}>
+        {description}
+      </Text>
 
       <ButtonWrap
+        testID={`${testID}.buttonWrap`}
         style={styles.buttons}
         buttons={[
           {

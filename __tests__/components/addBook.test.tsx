@@ -57,11 +57,11 @@ describe('Input component', () => {
       />
     )
 
-    titleInput = getByTestId('testInput.title')
-    authorInput = getByTestId('testInput.author')
-    descriptionInput = getByTestId('testInput.description')
-    cancelButton = getByTestId('button.0')
-    submitButton = getByTestId('button.1')
+    titleInput = getByTestId('addBook.form.input.title')
+    authorInput = getByTestId('addBook.form.input.author')
+    descriptionInput = getByTestId('addBook.form.input.description')
+    cancelButton = getByTestId('addBook.form.buttonWrap.0')
+    submitButton = getByTestId('addBook.form.buttonWrap.1')
 
     fireEvent.changeText(titleInput, 'Test title')
     fireEvent.changeText(authorInput, 'Test author')

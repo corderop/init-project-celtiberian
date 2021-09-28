@@ -4,7 +4,7 @@ import styles from './style'
 
 const Loading: React.FC = () => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={'loading'}>
       <Text>Loading</Text>
     </View>
   )

@@ -5,19 +5,20 @@ import { PageType } from './navbar.types'
 
 interface Props {
   pages: Array<PageType>
+  testID?: string
 }
 
 const Navbar: React.FC<Props> = (props) => {
-  const { pages } = props
+  const { pages, testID } = props
 
   return (
-    <View style={styles.container} testID={'navbar'}>
+    <View style={styles.container} testID={testID}>
       {pages.map((p) => (
         <Pressable
           key={p.key}
           style={styles.element}
           onPressOut={p.action}
-          testID={'navbar.pressable'}>
+          testID={`${testID}.${p.key}`}>
           <Text style={styles.text}>{p.text}</Text>
         </Pressable>
       ))}

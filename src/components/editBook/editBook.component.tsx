@@ -19,7 +19,7 @@ const EditBook: React.FC<Props> = (props) => {
   const { t } = useTranslation('common')
 
   return (
-    <View>
+    <View testID={'editBook'}>
       <Navbar
         pages={[
           {
