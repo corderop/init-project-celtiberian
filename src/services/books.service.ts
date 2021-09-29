@@ -5,7 +5,7 @@ class BooksService {
   private PATH: string
 
   constructor() {
-    this.PATH = 'http://192.168.0.112:3000/'
+    this.PATH = 'http://192.168.0.103:3000/'
   }
 
   async getAllBooks(): Promise<Books> {
@@ -82,6 +82,20 @@ class BooksService {
       await axios({
         method: 'delete',
         url: this.PATH + `book/${id}`
+      })
+
+      return true
+    } catch (err) {
+      console.log(err)
+      return false
+    }
+  }
+
+  async resetServer(): Promise<boolean> {
+    try {
+      await axios({
+        method: 'post',
+        url: this.PATH + `reset`
       })
 
       return true

@@ -72,6 +72,29 @@ app.delete('/book/:id', (req, res) => {
   }
 })
 
+app.post('/reset', (req, res) => {
+  try {
+    books = {
+      1: {
+        id: 1,
+        title: 'Harry Potter',
+        author: 'J.K. Rowling',
+        description: 'A magician kid'
+      },
+      2: {
+        id: 2,
+        title: 'The Pillars of the Earth',
+        author: 'Ken Follet',
+        description: 'A really big book'
+      }
+    }
+
+    return res.sendStatus(200)
+  } catch (err) {
+    return res.sendStatus(400)
+  }
+})
+
 app.listen(3000, () => {
   console.log('Server running on port 3000')
 })

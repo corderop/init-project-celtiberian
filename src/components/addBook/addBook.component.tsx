@@ -19,7 +19,7 @@ const AddBook: React.FC<Props> = (props) => {
   return (
     <View testID={'addBook'}>
       <Navbar
-        testID={'navbar'}
+        testID={'addBook.navbar'}
         pages={[
           {
             key: 0,
